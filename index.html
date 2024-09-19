@@ -24,28 +24,38 @@
         position: relative;
         z-index: 1000;
       }
-
-
+      .header-container {
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+      }
       footer {
         background-color: #f8f8f8;
-        padding: 30px;
         font-size: 14px;
         position: relative;
-        bottom: 0;
         width: 100%;
         text-align: center;
-        left: 0;
       }
-
+      .footer-container {
+        padding: 30px;
+        display: flex;
+        justify-content: space-around;
+      }
     </style>
   </head>
   <body>
     <header>
-      Lee's House of Stories
+      <div class="header-container">
+      <h1>Lee's House of Stories</h1>
+      <img src="./Lees_House_of_Stories_Logo_100x100.png"/>
+      </div>
     </header>
     <div class="storymaps-root"></div>
     <footer>
-      your footer here
+      <div class="footer-container">
+        <h3>Thanks for stopping by!</h3>
+        <img src="./lee.jpg"/>
+      </div>
     </footer>
     <script
       id="embed-script"
