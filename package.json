@@ -4,14 +4,11 @@
   "description": "Testing the ability to embed an AGSM story via script block.",
   "main": "index.html",
   "scripts": {
-    "start-dev": "concurrently \"browser-sync start --server --files 'js/*.js, *.html, css/*.css'\" \"nodemon --exec eslint js --ext .js\""
+    "start-dev": "browser-sync start --server --files *.html"
   },
   "author": "Lee Bock",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^3.0.2",
-    "concurrently": "^9.0.1",
-    "eslint": "^9.10.0",
-    "nodemon": "^3.1.6"
+    "browser-sync": "^3.0.2"
   }
 }
