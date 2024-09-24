@@ -45,15 +45,21 @@
         justify-content: space-around;
       }
     </style>
+    <script>
+      const paintItRed = () => {document.getElementsByTagName('body')[0].style.backgroundColor = 'red'}
+    </script>
   </head>
   <body>
     <header>
       <div class="header-container">
-      <div>
-      <h1>Lee's House of Stories</h1>
-      <h2>A world of stories under one roof</h2>
-      </div>
-      <img src="./Lees_House_of_Stories_Logo_100x100.png"/>
+        <div>
+          <h1>Lee's House of Stories</h1>
+          <h2>A world of stories under one roof</h2>
+        </div>
+        <div style="display: flex;">
+          <a href="#" onclick="paintItRed()" style="margin-right: 10px; align-self: center;">Paint it red!</a>
+          <img src="./Lees_House_of_Stories_Logo_100x100.png"/>  
+        </div>
       </div>
     </header>
     <div class="storymaps-root"></div>
