@@ -18,6 +18,9 @@
         
       }
 
+
+
+
       /* Styling for the nav bar */
       header {
         font-family: 'Poppins', sans-serif!important;
@@ -32,6 +35,22 @@
         display: flex;
         justify-content: space-between;
       }
+
+      #sticky-section {
+        position: relative; /* Initially, it's below the header */
+        background-color: white;
+        transition: all 0.3s ease; /* Smooth transition when the section becomes sticky */
+        padding: 30px; display: flex; justify-content: space-around;
+      }
+
+      .sticky {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+      }
+
       footer {
         background-color: #f8f8f8;
         font-size: 14px;
@@ -45,23 +64,76 @@
         justify-content: space-around;
       }
     </style>
+
     <script>
-      const paintItRed = () => {document.getElementsByTagName('body')[0].style.backgroundColor = 'red'}
+
+      window.addEventListener("scroll", function() {
+        var headerHeight = document.getElementById("header").offsetHeight;
+        var section = document.getElementById("sticky-section");
+        if (window.scrollY > headerHeight) {
+          section.classList.add("sticky");
+        } else {
+          section.classList.remove("sticky");
+        }
+      });
+
+      const changeTitle = () => {
+        const root = document.querySelector('.storymaps-root');
+        const h1 = root.querySelector('.sc-title');
+        h1.innerHTML = "Hahahahaha!";
+      }
+
+      const handleBGSelectChange = (event) => {
+        const bgColor = event.target.value;
+        const root = document.querySelector('.storymaps-root');
+        root.querySelectorAll('p').forEach(child => {
+          child.style.backgroundColor = bgColor;  // explicitly apply to all nested content
+        });          
+      }
+
+      const handleLHSelectChange = (event) => {
+        const lineHeight = event.target.value;
+        const root = document.querySelector('.storymaps-root');
+        root.querySelectorAll('p').forEach(child => {
+          child.style.lineHeight = lineHeight;  // explicitly apply to all nested content
+        });          
+      }
+
     </script>
   </head>
   <body>
-    <header>
+    <header id="header">
       <div class="header-container">
         <div>
           <h1>Lee's House of Stories</h1>
           <h2>A world of stories under one roof</h2>
         </div>
         <div style="display: flex;">
-          <a href="#" onclick="paintItRed()" style="margin-right: 10px; align-self: center;">Paint it red!</a>
           <img src="./Lees_House_of_Stories_Logo_100x100.png"/>  
         </div>
       </div>
     </header>
+    <section id="sticky-section">
+      <div>
+        <label for="lineHeight">Line spacing:</label>
+        <select id="lineHeight" onchange="handleLHSelectChange(event)">
+          <option value="1.65" selected>default</option>
+          <option value="1.0">1.0</option>
+          <option value="2.0">2.0</option>
+          <option value="3.0">3.0</option>
+        </select>    
+      </div>
+      <button onclick="changeTitle()" style="margin-right: 10px; align-self: center;">Change the title!</button>
+      <div>
+        <label for="bgColor">Background color:</label>
+        <select id="bgColor" onchange="handleBGSelectChange(event)">
+          <option value="">default</option>
+          <option value="rgba(255,0,0,0.2)">red</option>
+          <option value="rgba(0,255,0,0.2)">green</option>
+          <option value="rgba(0,0,255,0.2)">blue</option>
+        </select>
+      </div>
+    </section>
     <div class="storymaps-root"></div>
     <footer>
       <div class="footer-container">
@@ -75,7 +147,7 @@
     </footer>
     <script
       id="embed-script"
-      src="https://storymapsbranch4.arcgis.com/embed/view"
+      src="https://storymapsqa.arcgis.com/embed/view"
       data-story-id="749af21064e34f029bdd53946d9d941a"
       data-root-node=".storymaps-root"
     ></script>
