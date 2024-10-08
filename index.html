@@ -41,6 +41,9 @@
         background-color: white;
         transition: all 0.3s ease; /* Smooth transition when the section becomes sticky */
         padding: 30px; display: flex; justify-content: space-around;
+        display: flex;
+        align-items: center;
+        background-color: aqua;
       }
 
       .sticky {
@@ -49,6 +52,16 @@
         left: 0;
         right: 0;
         z-index: 1000;
+      }
+
+      #scroll-progress {
+        background-color: black;
+        color: yellow;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 4px;
+        font-size: 12px;
+        margin-left: 5px;
       }
 
       footer {
@@ -76,6 +89,40 @@
           section.classList.remove("sticky");
         }
       });
+
+      document.addEventListener(
+        "scroll", 
+        () => {
+          const root = document.querySelector('.storymaps-root');
+          
+          const rootTop = root.offsetTop;
+          const rootHeight = root.offsetHeight;
+
+          const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+          const rootBottom = rootTop + rootHeight;
+
+          let percentageScrolled;
+
+          if (scrollPosition + window.innerHeight < rootTop) {
+            // root div is below the viewport (unlikely, but still...)
+            percentageScrolled = 0;
+          } else if (scrollPosition > rootBottom) {
+            // root div is above the viewport (also unlikely)
+            percentageScrolled = 100;
+          } else {
+            // root div is partially or fully in view
+            const distanceScrolled = scrollPosition + window.innerHeight - rootTop;
+            percentageScrolled = (distanceScrolled / rootHeight) * 100;
+          }
+
+          // Clamp between 0% and 100%, then round the result to the nearest integer
+          percentageScrolled = Math.round(Math.max(0, Math.min(percentageScrolled, 100)));
+
+          const scrollProgressDiv = document.getElementById("scroll-progress");
+          scrollProgressDiv.innerHTML = `${Math.round(percentageScrolled)}%`
+
+        }
+      );
 
       const changeTitle = () => {
         const root = document.querySelector('.storymaps-root');
@@ -133,6 +180,11 @@
           <option value="rgba(0,0,255,0.2)">blue</option>
         </select>
       </div>
+      <div style="display: flex;">
+        <label>Percent story complete:</label>
+        <div id="scroll-progress">0%</div>
+      </div>
+      
     </section>
     <div class="storymaps-root"></div>
     <footer>
