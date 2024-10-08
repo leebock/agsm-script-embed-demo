@@ -158,35 +158,38 @@
         </div>
       </div>
     </header>
+
     <section id="sticky-section" 
-            class="d-flex flex-column flex-md-row justify-content-around p-3 border-bottom fs-5">
-      <div class="d-flex align-items-center">
-        <label for="lineHeight" class="me-2 text-nowrap">Line spacing:</label>
-        <select class="form-select fs-5" id="lineHeight" onchange="handleLHSelectChange(event)">
-          <option value="1.65" selected>default</option>
-          <option value="1.0">1.0</option>
-          <option value="2.0">2.0</option>
-          <option value="3.0">3.0</option>
-        </select>    
+      class="container-fluid p-3 border-bottom fs-5">
+      <div class="row">
+        <div class="col-12 col-md-3 d-flex align-items-center">
+          <label for="lineHeight" class="me-2 text-nowrap">Line spacing:</label>
+          <select class="form-select fs-5" id="lineHeight" onchange="handleLHSelectChange(event)">
+            <option value="1.65" selected>default</option>
+            <option value="1.0">1.0</option>
+            <option value="2.0">2.0</option>
+            <option value="3.0">3.0</option>
+          </select>    
+        </div>
+        <div class="col-12 col-md-3 d-flex justify-content-center">
+          <button class="btn btn-primary fs-5" onclick="changeTitle()">Change the title!</button>
+        </div>
+        <div class="col-12 col-md-3 d-flex align-items-center">
+          <label for="bgColor" class="me-2 text-nowrap">Background color:</label>
+          <select class="form-select fs-5" id="bgColor" onchange="handleBGSelectChange(event)">
+            <option value="">default</option>
+            <option value="rgba(255,0,0,0.2)">red</option>
+            <option value="rgba(0,255,0,0.2)">green</option>
+            <option value="rgba(0,0,255,0.2)">blue</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-3 d-flex align-items-center justify-content-md-end">
+          <label>Percent story complete:</label>
+          <span id="scroll-progress" class="fs-5 badge text-bg-secondary ms-2">0%</span>
+        </div>
       </div>
-      <button class="btn btn-primary fs-5" 
-              onclick="changeTitle()" 
-              style="margin-right: 10px; align-self: center;">Change the title!</button>
-      <div class="d-flex align-items-center">
-        <label for="bgColor" class="me-2 text-nowrap">Background color:</label>
-        <select class="form-select fs-5" id="bgColor" onchange="handleBGSelectChange(event)">
-          <option value="">default</option>
-          <option value="rgba(255,0,0,0.2)">red</option>
-          <option value="rgba(0,255,0,0.2)">green</option>
-          <option value="rgba(0,0,255,0.2)">blue</option>
-        </select>
-      </div>
-      <div class="d-flex align-items-center">
-        <label>Percent story complete:</label>
-        <span id="scroll-progress" class="fs-5 badge text-bg-secondary">0%</span>
-      </div>
-      
     </section>
+
     <div class="storymaps-root"></div>
     <footer>
       <div class="footer-container">
